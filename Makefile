@@ -5,15 +5,15 @@ SRCS=$(wildcard *.cpp)
 OBJS=$(patsubst %.cpp,%.o,$(SRCS))
 DBGOBJS=$(patsubst %.cpp,%.dbg.o,$(SRCS))
 .PHONY: clean depend all
-all: myProgram myProgram-debug
-myProgram: $(OBJS)
+all: ganycreator ganycreator-debug
+ganycreator: $(OBJS)
 	   g++ -o $@ -O3 $(OBJS)
-myProgram-debug: $(DBGOBJS)
+ganycreator-debug: $(DBGOBJS)
 		 g++ -o $@ -ggdb3 $(DBGOBJS)
 %.dbg.o: %.cpp
 	 g++ $(DBGFLAGS) -c -o $@ $<
 clean:
-	rm -f myProgram myProgram-debug *.o *.cpp~ *.hpp~
+	rm -f ganycreator ganycreator-debug *.o *.cpp~ *.hpp~
 depend:
 	makedepend $(SRCS)
 	makedepend -a -o .dbg.o  $(SRCS)
